@@ -17,10 +17,10 @@ class Hero(Base):
     def __repr__(self):
         return f"<Hero(id={self.id}, name={self.name}, power={self.power}, rank={self.rank})>"
 
-DATABASE_PATH = "./data/wacanda.sqlite"
+DATABASE_PATH = "wacanda.sqlite"
 engine = create_engine(f"sqlite:///{DATABASE_PATH}")
 Session = sessionmaker(bind=engine)
 session = Session()
 
-# Создание таблиц, если их ещё нет
+
 Base.metadata.create_all(engine)
