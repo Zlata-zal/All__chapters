@@ -1,8 +1,6 @@
 from models import session, Movie, Director
 from datetime import datetime
 
-# CRUD-функции для таблицы Movie
-
 def create_movie(original_title, budget, popularity, release_date, revenue, title, vote_average, vote_count, overview, tagline, director_id):
     if isinstance(release_date, str):
         release_date = datetime.strptime(release_date, "%Y-%m-%d").date()
@@ -44,7 +42,6 @@ def delete_movie(movie_id):
         return True
     return False
 
-# CRUD-функции для таблицы Director (опционально)
 def create_director(name, gender, uid, department):
     new_director = Director(
         name=name,
@@ -61,11 +58,10 @@ def read_directors():
 
 
 if __name__ == "__main__":
-    # Пример создания режиссера
     director = create_director(name="Ryan Coogler", gender="Male", uid="d3", department="Directing")
     print(f"Создан режиссер: {director}")
 
-    # Пример создания фильма
+
     movie = create_movie(
         original_title="Black Panther",
         budget=200000000,
@@ -81,15 +77,14 @@ if __name__ == "__main__":
     )
     print(f"Создан фильм: {movie}")
 
-    # Чтение всех фильмов
+
     movies = read_movies()
     print(f"Все фильмы: {movies}")
 
-    # Обновление фильма
+
     updated_movie = update_movie(movie_id=movie.id, budget=210000000, tagline="Wakanda Forever.")
     print(f"Обновлён фильм: {updated_movie}")
 
-    # Удаление фильма
     if delete_movie(movie_id=movie.id):
         print("Фильм удалён.")
     else:
