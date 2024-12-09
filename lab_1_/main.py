@@ -24,6 +24,7 @@ def create_movie(original_title, budget, popularity, release_date, revenue, titl
 def read_movies():
     return session.query(Movie).all()
 
+
 def update_movie(movie_id, **kwargs):
     movie = session.query(Movie).filter(Movie.id == movie_id).first()
     if movie:
@@ -56,7 +57,6 @@ def create_director(name, gender, uid, department):
 def read_directors():
     return session.query(Director).all()
 
-
 if __name__ == "__main__":
     director = create_director(name="Ryan Coogler", gender="Male", uid="d3", department="Directing")
     print(f"Создан режиссер: {director}")
@@ -77,11 +77,8 @@ if __name__ == "__main__":
     )
     print(f"Создан фильм: {movie}")
 
-
     movies = read_movies()
     print(f"Все фильмы: {movies}")
-
-
     updated_movie = update_movie(movie_id=movie.id, budget=210000000, tagline="Wakanda Forever.")
     print(f"Обновлён фильм: {updated_movie}")
 

@@ -1,13 +1,13 @@
-from PyQt5 import QtWidgets, uic
+from PyQt5 import QtWidgets
 from models import session, Movie, Director
 from datetime import datetime
 from main import create_movie, read_movies, update_movie, delete_movie, create_director, read_directors
-class MovieApp(QtWidgets.QMainWindow):
+class MovieApp(QWidget.QMainWindow):
     def __init__(self):
         super(MovieApp, self).__init__()
         self.setWindowTitle("Movie Management App")
 
-        self.central_widget = QtWidgets.QWidget
+        self.central_widget = QtWidgets()
         self.setCentralWidget(self.central_widget)
 
         layout = QtWidgets.QGridLayout(self.central_widget)
