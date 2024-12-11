@@ -1,5 +1,5 @@
 from sqlalchemy.orm import declarative_base, relationship, sessionmaker
-from sqlalchemy import Column, Integer, String, Float, Date, ForeignKey, create_engine
+from sqlalchemy import Column, Integer, String, Float, Date, ForeignKey, create_engine, extract
 
 Base = declarative_base()
 
@@ -71,6 +71,12 @@ if director:
     for movie in director.movies:
         quantity += 1
     print(f"Режиссер {director_name} снял фильмов: {quantity}")
+
+
+movies_2014 = session.query(Movie).filter(extract('year', Movie.release_date) == 2014).all()
+for movie in movies_2014:
+    print(movie.title, movie.release_date.year)
+
 
 movies = session.query(Movie).filter(Movie.vote_average >= 8.0).all()
 for movie in movies:
